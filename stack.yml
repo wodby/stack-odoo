@@ -1,0 +1,54 @@
+name: odoo
+icon: odoo
+docs: https://wodby.com/docs/2.0/stacks/catalog/odoo/
+title: Odoo
+
+services:
+- name: odoo
+  title: Odoo
+  service: odoo
+  required: true
+  volumes:
+  - name: filestore
+    size: 20
+  links:
+  - name: db
+    service: postgres
+  - name: filestore
+    service: filestore-nfs
+  - name: sendmail
+    service: opensmtpd
+
+# The public entry point: it sends live updates to Odoo's gevent port.
+- name: nginx
+  title: Nginx
+  service: odoo-nginx
+  required: true
+  main: true
+  links:
+  - name: backend
+    service: odoo
+
+- name: postgres
+  title: PostgreSQL
+  service: postgres
+  required: true
+  volumes:
+  - name: data
+    size: 20
+
+# Uploaded files and sessions, shared by every Odoo replica.
+- name: filestore-nfs
+  title: Odoo data NFS storage
+  service: nfs-provisioner
+  required: true
+  volumes:
+  - name: data
+    size: 25
+
+# Odoo can also send email through a mail server set up in its settings.
+- name: opensmtpd
+  title: OpenSMTPD
+  service: opensmtpd
+  required: false
+  disabled: true
