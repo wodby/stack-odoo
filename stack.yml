@@ -18,6 +18,19 @@ services:
     service: filestore-nfs
   - name: sendmail
     service: opensmtpd
+  # Two workers, the live-update process and a scheduled-action worker. Odoo
+  # restarts a worker that grows past its own limit.
+  workloads:
+  - name: main
+    containers:
+    - name: odoo
+      resources:
+        request:
+          cpu: 200
+          memory: 1024
+        limit:
+          cpu: 2000
+          memory: 3072
 
 # The public entry point: it sends live updates to Odoo's gevent port.
 - name: nginx
