@@ -13,13 +13,6 @@ composition for Odoo.
 - [Wodby stack documentation](https://wodby.com/docs/2.0/stacks/)
 - [Stack manifest reference](https://wodby.com/docs/2.0/stacks/template/)
 
-## Start from a boilerplate
-
-Use one of the compatible boilerplates exposed by this stack's services to
-start with Wodby CI build configuration:
-
-- [Odoo modules boilerplate](https://github.com/wodby/odoo-boilerplate)
-
 ## Service definitions
 
 - [Odoo service](https://github.com/wodby/service-odoo)
@@ -52,12 +45,12 @@ wodby stack validate-manifest stack.yml --org <org-id>
 
 ## Deploy this stack
 
-Start from the [Odoo modules boilerplate](https://github.com/wodby/odoo-boilerplate), or connect your own repository
-of Odoo modules. Odoo itself comes from the image.
+The stack needs no repository: Odoo and every Community app come with the prebuilt
+[`wodby/odoo`](https://github.com/wodby/odoo) image. Install apps from Odoo's Apps menu.
 
 Enter the administrator's password, and optionally a login, email, language and the apps to install, in the Odoo
 service's settings when you create the app. The first deployment installs Odoo with that account; Odoo's database
-manager is turned off. Later deployments update the modules that changed.
+manager is turned off. Later deployments update the modules that a new image changed.
 
 Uploaded files and sessions are kept on the shared `filestore` volume, so Odoo can run more than one replica.
 Enable OpenSMTPD, or set up an outgoing mail server in Odoo, to send email.
