@@ -2,6 +2,12 @@ name: odoo
 icon: odoo
 docs: https://wodby.com/docs/2.0/stacks/catalog/odoo/
 title: Odoo
+# The main stack of the Odoo variants: the catalog shows this next to the link
+# to it on the variants' pages.
+variantDescription: >-
+  Choose this when you don't need your own modules: it runs the prebuilt Odoo
+  image with every Community app, with no Git repository to maintain and no
+  builds.
 
 services:
 - name: odoo
