@@ -9,7 +9,9 @@ composition for Odoo.
 
 ## Stack contract
 
+- [Odoo stack on Wodby](https://wodby.com/stacks/odoo)
 - [Browse Wodby application stacks](https://wodby.com/stacks)
+- [Odoo stack guide](https://wodby.com/docs/2.0/stacks/catalog/odoo/)
 - [Wodby stack documentation](https://wodby.com/docs/2.0/stacks/)
 - [Stack manifest reference](https://wodby.com/docs/2.0/stacks/template/)
 
@@ -18,7 +20,7 @@ composition for Odoo.
 - [Odoo service](https://github.com/wodby/service-odoo)
 - [Nginx (Odoo) service](https://github.com/wodby/service-odoo-nginx)
 - [PostgreSQL service](https://github.com/wodby/service-postgres)
-- [NFS provisioner service](https://github.com/wodby/service-nfs-provisioner)
+- [Ganesha NFS provisioner service](https://github.com/wodby/service-nfs-provisioner)
 - [OpenSMTPD service](https://github.com/wodby/service-opensmtpd)
 
 ## What's included
@@ -26,7 +28,7 @@ composition for Odoo.
 | Component / service | Default configuration |
 | --- | --- |
 | Odoo<br>`odoo` | required; enabled by default; volumes: `filestore` 20 GB; links: `db` → `postgres`, `filestore` → `filestore-nfs`, `sendmail` → `opensmtpd` |
-| Nginx<br>`nginx` | required; enabled by default; main; links: `backend` → `odoo` |
+| Nginx<br>`nginx` | required; enabled by default; links: `backend` → `odoo` |
 | PostgreSQL<br>`postgres` | required; enabled by default; volumes: `data` 20 GB |
 | Odoo data NFS storage<br>`filestore-nfs` | required; enabled by default; volumes: `data` 25 GB |
 | OpenSMTPD<br>`opensmtpd` | optional; disabled by default |
